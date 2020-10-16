@@ -1,57 +1,39 @@
 import express from 'express';
 
-//Para fazer ao insert dos dados na tabela.
-import {getRepository} from 'typeorm'
+//Import do path para conseguir o caminho para a url das imagens.
+import path from 'path';
 
-//Chamando o model que está associado a tabela.
-import Orphanage from './models/Orphanages';
+//Importação para tratamento dos erros.
+import 'express-async-errors';
 
 //Fazer a importação da conexão com a database.
 import './database/connection';
 
+//Importando as rotas.
+import routes from './routes';
+
+import errorHandler from './errors/handler';
+
+import cors from 'cors';
+
+
 const app = express();
+
+
+app.use(cors());
 
 //Aqui digo que vou usar Json
 app.use(express.json())
 
-//Rota = conjunto que faz o método HTTP funcione, ou seja, executado.
-//Recurso = é o que o método vai retornar.
-//Método HTTP = GET, POST, PUT, DELETE
-//Parêmetros = 
+//sempre depois express.json.
+app.use(routes);
 
-//Query Params: http://localhost:3333/users?search=romulo.
-//Route Params:   http://localhost:3333/users/1 (Identificador de um recurso)
-//Body:  http://localhost:3333/users (Identificar um recurso)
-app.post ( '/orphanages',  async (request, response) =>  {
+//Caminho para acessar as imagens.
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')))
 
-    const {
-        name,
-	    latitude,
-	    longitude,
-	    about,
-	    instructions,
-	    opening_hours,
-	    open_on_weekends,
-    } = request.body
 
-    const orphanagesRepository = getRepository(Orphanage);
-
-    const orphanage = orphanagesRepository.create({
-        name,
-	    latitude,
-	    longitude,
-	    about,
-	    instructions,
-	    opening_hours,
-	    open_on_weekends,
-
-    })
-
-    //Necessário o await para que o código espere esse método ser executado, para isso a função deve ser async.
-    await orphanagesRepository.save(orphanage);
-
-    return response.status(201).json(orphanage);
- });
+//Faz a msg de erro digitada apareca para o usuário.
+app.use(errorHandler);
 
 //Aqui definimos a porta onde ira rodar nosso back.
 app.listen(3333);
