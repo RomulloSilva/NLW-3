@@ -73,7 +73,7 @@ async show( request: Request, response: Response){
             about,
             instructions,
             opening_hours,
-            open_on_weekends,
+            open_on_weekends: open_on_weekends == 'true',
             images,
         };
 //Schema da validação dos dados
@@ -94,6 +94,8 @@ async show( request: Request, response: Response){
         //Validação dos dados
         await schema.validate(data,{
             abortEarly: false,
+
+
         })
 
         const orphanage = orphanagesRepository.create(data );
