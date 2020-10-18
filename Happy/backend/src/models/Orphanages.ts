@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
 
 //Importando o model de imagens.
-import Image from   './Image';
+import Image from './Image';
 
 //Aqui associa essa classe a tabela que criamos.
 @Entity('orphanages')
-export default class Orphanages{
+export default class Orphanages {
 
     @PrimaryGeneratedColumn('increment')
     id: number;
@@ -32,11 +32,11 @@ export default class Orphanages{
     open_on_weekends: boolean;
 
     //Relacionando com as imagens.
-    @OneToMany(()=> Image, image => image.orphanage, {
+    @OneToMany(() => Image, image => image.orphanage, {
         //Tratamento para atualizar as imagens quando eles forem atualizados.
         cascade: ['insert', 'update']
     })
-    @JoinColumn({name: 'orphanage_id'})
-    images:  Image[];
+    @JoinColumn({ name: 'orphanage_id' })
+    images: Image[];
 
 }

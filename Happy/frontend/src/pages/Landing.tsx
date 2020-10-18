@@ -3,7 +3,7 @@ import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 
 //Import para melhorar a requisição de chamadas dos componenetes.
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //Import do css das páginas.
 import '../styles/pages/landing.css'

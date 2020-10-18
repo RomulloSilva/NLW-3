@@ -1,11 +1,11 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class createImages1602801806706 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
             name: 'images',
-            columns:[
+            columns: [
                 {
                     name: 'id',
                     type: 'integer',
@@ -28,13 +28,13 @@ export class createImages1602801806706 implements MigrationInterface {
                     type: 'integer',
                 }
             ],
-//Chaves estrangeiras.
-            foreignKeys:[
+            //Chaves estrangeiras.
+            foreignKeys: [
                 {
                     name: 'ImageOrphanage',
-                    columnNames:['orphanage_id'],
+                    columnNames: ['orphanage_id'],
                     referencedTableName: 'orphanages',
-                    referencedColumnNames:['id'],
+                    referencedColumnNames: ['id'],
                     //Tratamento para atualizações no id do orfanato.
                     onUpdate: 'CASCADE',
                     onDelete: 'CASCADE',

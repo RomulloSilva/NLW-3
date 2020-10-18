@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 //Importando o model de orfanato.
-import Orphanage from './Orphanages'; 
+import Orphanage from './Orphanages';
 
 //Aqui associa essa classe a tabela que criamos.
 @Entity('images')
-export default class image{
+export default class image {
 
     @PrimaryGeneratedColumn('increment')
     id: number;
@@ -14,7 +14,7 @@ export default class image{
     path: string;
 
     //Relacionamento com orfanato.
-    @ManyToOne(()=> Orphanage, orphanage => orphanage.images)
-    @JoinColumn({name: "orphanage_id"})
+    @ManyToOne(() => Orphanage, orphanage => orphanage.images)
+    @JoinColumn({ name: "orphanage_id" })
     orphanage: Orphanage;
 }

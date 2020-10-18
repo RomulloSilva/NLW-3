@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 
 //importando o controller;
 import OrphanagesController from './controllers/OrphanagesController';
@@ -21,10 +21,10 @@ const upload = multer(uploadConfig);
 //Query Params: http://localhost:3333/users?search=romulo.
 //Route Params:   http://localhost:3333/users/1 (Identificador de um recurso)
 //Body:  http://localhost:3333/users (Identificar um recurso)
-routes.get ( '/orphanages',  OrphanagesController.index) ;
-routes.get( '/orphanages/:id',  OrphanagesController.show) ;
+routes.get('/orphanages', OrphanagesController.index);
+routes.get('/orphanages/:id', OrphanagesController.show);
 
 //Upload.array permite carregar vários arquivos, nesse caso imagens.
-routes.post ( '/orphanages',  upload.array('images'), OrphanagesController.create) ;
+routes.post('/orphanages', upload.array('images'), OrphanagesController.create);
 
- export default  routes;
+export default routes;

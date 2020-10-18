@@ -5,8 +5,8 @@ import multer from 'multer';
 //Importação do path para fazer caminhos relativos.
 import path from 'path';
 
-export default{
-//salvando as imagens no disco
+export default {
+    //salvando as imagens no disco
     storage: multer.diskStorage({
 
         //aqui mostro o destino que deve ser salvo as imagens. o __dirname retorna até a pasta atual e depois coloco

@@ -5,8 +5,8 @@ import imagesView from './images_views';
 
 export default {
 
-    render(orphanage: Orphanage){
-        return{
+    render(orphanage: Orphanage) {
+        return {
 
             id: orphanage.id,
             name: orphanage.name,
@@ -20,7 +20,7 @@ export default {
         };
     },
 
-    renderMany(orphanages: Orphanage[]){
+    renderMany(orphanages: Orphanage[]) {
         return orphanages.map(orphanage => this.render(orphanage));
     }
 

@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class createOrphanages1602631410797 implements MigrationInterface {
 
@@ -8,7 +8,7 @@ export class createOrphanages1602631410797 implements MigrationInterface {
         //Criando uma tabela
         await queryRunner.createTable(new Table({
             name: "orphanages",
-            columns:[
+            columns: [
                 {
                     name: 'id',
                     type: 'integer',
